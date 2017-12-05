@@ -7,16 +7,12 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  get '/' do
-    erb :index
-  end
-
   get '/posts/new' do
     erb :new
   end
 
   post '/posts' do
-    Post.create(name: params[:name], content: params[:content])
+    @post = Post.create(params)
     erb :index
   end
 end
